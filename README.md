@@ -1,1 +1,43 @@
-# team1
+# 🧠 알고리즘 스터디
+
+꾸준히 알고리즘 문제를 풀며 실력을 향상시키고 문제 해결 감각을 길러 유연하게 사고하는 것을 목표로 합니다.
+
+## 🎯 스터디 목표
+- 꾸준한 문제 풀이로 실력 향상
+- 문제 해결 감각을 익혀 유연한 사고력 강화
+
+## 🗓️ 진행방식
+- 주 1회 문제를 풀고 PR을 정성스레 작성하여 게시합니다.
+- 각자 나머지 인원의 문제를 풀고 리뷰를 작성합니다.
+- PR에 모든 인원이 리뷰를 작성했다면 merge합니다.
+- 문제는 자율적으로 선택합니다. (프로그래머스, 백준, SWEA, 코드트리 등)
+- PR에는 문제 접근방식, 풀이방식, 사고의 흐름, 결론, 배운 점 등을 포함합니다.
+
+## 📌 컨벤션
+### 1. 🔀 브랜치 규칙
+- **형식**: `{id}/{차수}` (예: `g0rnn/1`)
+
+### 2. 📝 커밋 메시지 규칙
+- **형식**: `YYYY-MM-DD (커밋 메시지)` (예: `2026-02-02 (백준 1234번 문제 풀이)`)
+
+### 3. 🗂️ 폴더 및 파일 구조
+- 루트(root) 바로 아래에 **팀원별 ID 폴더**를 두고, 그 하위에 **알고리즘 유형**별로 분류합니다.
+
+```text
+/ (root)
+  /g0rnn
+    /DFS_BFS
+      - BOJ_1260.java
+    /Greedy
+      - BOJ_11047.java
+```
+
+## 🧭 추천하는 풀이 방법
+- 30분 타이머를 맞춰 시간 내에 풀 수 있도록 노력합니다.
+- 너무 오랜 시간 동안 고민하지 않습니다. 1시간 이상 고민했다면 웬만해선 답지를 확인합니다.
+- 최대 2시간을 넘기지 않습니다.
+
+## 👥 멤버 구성
+| <img src="https://github.com/g0rnn.png" width="100"> | <img src="https://github.com/1lrving1.png" width="100"> | <img src="https://github.com/hyeonnkang.png" width="100"> | <img src="https://github.com/kiddo-psh.png" width="100"> | <img src="https://github.com/Seol-Munhyeok.png" width="100"> |
+| :---: | :---: | :---: | :---: | :---: |
+| [g0rnn](https://github.com/g0rnn) | [1lrving1](https://github.com/1lrving1) | [hyeonnkang](https://github.com/hyeonnkang) | [kiddo-psh](https://github.com/kiddo-psh) | [Seol-Munhyeok](https://github.com/Seol-Munhyeok) |
