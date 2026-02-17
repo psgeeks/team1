@@ -13,6 +13,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_17472_다리만들기 {
+	// 기본 세팅
 	static int n, m, k;
 	static int[][] map;
 	static final int INF = 1_000_000_000;
@@ -40,58 +41,60 @@ public class BOJ_17472_다리만들기 {
 		return r>=0 && r<n && c>=0 && c<m;
 	}
 	
-	static int[] parent, rank;
-	
-	static void initDSU(int maxId) {
-		parent = new int[maxId+1];
-		rank = new int[maxId+1];
-		for (int i=0; i<=maxId; i++) parent[i]=i;
-	}
-	
-	static int find(int x) {
-		if (x==parent[x]) return x;
-		return parent[x] = find(parent[x]);
-	}
-	
-	static boolean union(int a, int b) {
-		a = find(a); b = find(b);
-		if (a==b) return false;
-		if (rank[a]<rank[b]) {int t = a; a = b; b = t;}
+	// 입력 받기
+	static void init() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		parent[b] = a;
-		if (rank[a]==rank[b]) rank[a]++;
-		return true;
-	}
-	
-	static int kruskal(List<Edge> edges, int K) {
-		Collections.sort(edges);
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
 		
-		initDSU(K+1);
+		map = new int[n][m];
 		
-		int connected = 0;
-		int sum = 0;
-		
-		for (Edge e : edges) {
-			if (union(e.a, e.b)) {
-				sum += e.w;
-				connected++;
-				if (connected == K-1) break;
+		for (int i=0; i<n; i++) {
+			st = new StringTokenizer(br.readLine());
+			for (int j=0; j<m; j++) {
+				map[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		return (connected == K-1)? sum : -1;
 	}
 	
-	public static void main(String[] args) throws IOException {
-		init();
+	// 섬마다 번호 붙이기 2 ~ k번
+	static void labeling() {
+	    k = 1;
 
-		labeling();
-
-		List<Edge> edges = buildEdges(k);
-	
-		System.out.print(kruskal(edges, k-1));
+	    for (int i=0; i<n; i++) {
+	        for (int j=0; j<m; j++) {
+	            if (map[i][j] == 1) {
+	                label(i, j, ++k);
+	            }
+	        }
+	    }
+	}
+	static void label(int r, int c, int x) {
+		q.clear();
+		q.offer(new int[] {r, c});
+		map[r][c] = x;
 		
+		while (!q.isEmpty()) {
+			int[] cur = q.poll();
+			int cr = cur[0];
+			int cc = cur[1];
+			
+			for (int d=0; d<4; d++) {
+				int nr = cr + dr[d];
+				int nc = cc + dc[d];
+				
+				if (!inRange(nr,nc)) continue;
+				if (map[nr][nc]!=1) continue;
+				
+				map[nr][nc] = x;
+				q.offer(new int[] {nr, nc});
+			}
+		}
 	}
 	
+	// 간선 만들기
 	static List<Edge> buildEdges(int k) {
 		int[][] best = new int[k+1][k+1];
 		for (int i=0; i<k+1; i++) Arrays.fill(best[i], INF);
@@ -143,58 +146,56 @@ public class BOJ_17472_다리만들기 {
 		return edges;
 	}
 	
-	static void labeling() {
-	    k = 1;
-
-	    for (int i=0; i<n; i++) {
-	        for (int j=0; j<m; j++) {
-	            if (map[i][j] == 1) {
-	                label(i, j, ++k);
-	            }
-	        }
-	    }
-	}
-
+	// Union-Find, kruskal 
+	static int[] parent, rank;
 	
-	static void label(int r, int c, int x) {
-		q.clear();
-		q.offer(new int[] {r, c});
-		map[r][c] = x;
+	static void initDSU(int maxId) {
+		parent = new int[maxId+1];
+		rank = new int[maxId+1];
+		for (int i=0; i<=maxId; i++) parent[i]=i;
+	}
+	
+	static int find(int x) {
+		if (x==parent[x]) return x;
+		return parent[x] = find(parent[x]);
+	}
+	
+	static boolean union(int a, int b) {
+		a = find(a); b = find(b);
+		if (a==b) return false;
+		if (rank[a]<rank[b]) {int t = a; a = b; b = t;}
 		
-		while (!q.isEmpty()) {
-			int[] cur = q.poll();
-			int cr = cur[0];
-			int cc = cur[1];
-			
-			for (int d=0; d<4; d++) {
-				int nr = cr + dr[d];
-				int nc = cc + dc[d];
-				
-				if (!inRange(nr,nc)) continue;
-				if (map[nr][nc]!=1) continue;
-				
-				map[nr][nc] = x;
-				q.offer(new int[] {nr, nc});
+		parent[b] = a;
+		if (rank[a]==rank[b]) rank[a]++;
+		return true;
+	}
+	
+	static int kruskal(List<Edge> edges, int K) {
+		Collections.sort(edges);
+		
+		initDSU(K+1);
+		
+		int connected = 0;
+		int sum = 0;
+		
+		for (Edge e : edges) {
+			if (union(e.a, e.b)) {
+				sum += e.w;
+				connected++;
+				if (connected == K-1) break;
 			}
 		}
+		return (connected == K-1)? sum : -1;
 	}
 	
-	static void init() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+	public static void main(String[] args) throws IOException {
+		init();
+
+		labeling();
+
+		List<Edge> edges = buildEdges(k);
+	
+		System.out.print(kruskal(edges, k-1));
 		
-		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
-		
-		map = new int[n][m];
-		
-		for (int i=0; i<n; i++) {
-			st = new StringTokenizer(br.readLine());
-			for (int j=0; j<m; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-			}
-		}
 	}
-	
-	
 }
