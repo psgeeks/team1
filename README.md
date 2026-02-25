@@ -67,6 +67,8 @@
 <br />
 
 ## 👥 멤버 구성
-| <img src="https://github.com/g0rnn.png" width="100"> | <img src="https://github.com/1lrving1.png" width="100"> | <img src="https://github.com/hyeonnkang.png" width="100"> | <img src="https://github.com/kiddo-psh.png" width="100"> | <img src="https://github.com/Seol-Munhyeok.png" width="100"> |
-| :---: | :---: | :---: | :---: | :---: |
-| [g0rnn](https://github.com/g0rnn) | [1lrving1](https://github.com/1lrving1) | [hyeonnkang](https://github.com/hyeonnkang) | [kiddo-psh](https://github.com/kiddo-psh) | [Seol-Munhyeok](https://github.com/Seol-Munhyeok) |
+
+| <img src="https://github.com/g0rnn.png" width="100"> | <img src="https://github.com/kiddo-psh.png" width="100"> | <img src="https://github.com/se000h.png" width="100"> | <img src="https://github.com/Seol-Munhyeok.png" width="100"> |
+| :--------------------------------------------------: | :------------------------------------------------------: | :---------------------------------------------------: | :----------------------------------------------------------: |
+|           [g0rnn](https://github.com/g0rnn)          |         [kiddo-psh](https://github.com/kiddo-psh)        |          [se000h](https://github.com/se000h)          |       [Seol-Munhyeok](https://github.com/Seol-Munhyeok)      |
+
