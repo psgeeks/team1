@@ -62,7 +62,7 @@
 
 * **[레포지토리 클론 후 문제풀기](https://github.com/psgeeks/team1/wiki/%EB%A0%88%ED%8F%AC%EC%A7%80%ED%86%A0%EB%A6%AC-%ED%81%B4%EB%A1%A0-%ED%9B%84-%EB%AC%B8%EC%A0%9C-%ED%92%80%EA%B8%B0)**: 레포지토리를 클론하고 문제풀이를 시작하는 방법
 * **[PR 작성 & 리뷰 작성](https://github.com/psgeeks/team1/wiki/PR-%EC%9E%91%EC%84%B1-&-%EB%A6%AC%EB%B7%B0-%EC%9E%91%EC%84%B1)**: 문제 풀이 후 Pull Request를 생성하고, 리뷰를 통해 스터디원들과 인사이트를 공유하는 방법
-
+* **[Approve를 안했을 때](https://github.com/psgeeks/team1/wiki/Approve%EB%A5%BC-%EC%95%88%ED%96%88%EC%9D%84-%EB%95%8C)**: 리뷰 승인을 하지 않았을 때
 
 <br />
 
