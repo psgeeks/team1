@@ -12,21 +12,26 @@ public class BOJ_13511_트리와쿼리2 {
     static StringTokenizer st;
     static int N, M;
     static List<Edge>[] adj;
-    static int[][] parent;
-    static int[] depth;
-    static long[] dist;
-    static int LOG;
+    static int[][] parent; // parent[i][j] : i의 2^j번째 조상
+    static int[] depth;    // depth[i] : i노드의 깊이 
+    static long[] dist;    // dist[i] : ROOT -> i노드까지 비용
+    static int LOG;        // 최대 깊이
 
     static class Edge {
-        int to, w;
+        int to, w; // 방향, 가중치 
 
         Edge (int to, int w) {
             this.to = to; this.w = w;
         }
     }
 
+    /*
+    # 트리의 전처리 과정
+    1. 트리를 순회하며 노드들의 부모노드를 저장한다.
+    2. 노드들의 깊이, 루트에서 해당노드로 가는 비용을 전부 저장한다.
+    */
     static void dfs(int u, int p) {
-        parent[u][0] = p;
+        parent[u][0] = p; // 부모노드 저장 
 
         for (Edge e : adj[u]) {
             int v = e.to;
@@ -37,6 +42,11 @@ public class BOJ_13511_트리와쿼리2 {
         }
     }
 
+    /*
+    # parent 배열을 채우기 위한 과정
+    # parent[i][j] = parent[parent[i][j-1]][j-1]
+    # i의 2^j번째 조상 = i의 2^(j-1)번째 조상의 2^(j-1)번째 조상 
+    */
     static void fillParent() {
         for (int j=1; j<LOG; j++) {
             for (int i=1; i<=N; i++) {
@@ -62,12 +72,14 @@ public class BOJ_13511_트리와쿼리2 {
     }
 
     static int lca (int u, int v) {
+        // 깊이가 큰 쪽을 u로 선택한다.
         if (depth[u] < depth[v]) {
             int temp = u;
             u = v;
             v = temp;
         }
 
+        // 깊이의 차이만큼 u를 점프
         int diff = depth[u] - depth[v];
         for (int j=0; j<LOG; j++) {
             if ((diff & (1<<j)) != 0) {
@@ -75,8 +87,15 @@ public class BOJ_13511_트리와쿼리2 {
             }
         }
 
+        // 깊이를 맞췄을 때 같은 노드라면 그 노드가 lca
         if (u==v) return u;
 
+        /*
+        # 깊이가 같지만 다른 노드라면 조상 노드로 점프해야한다.
+        # 최대 높이부터 점프를 시도하는데 조상이 다를 때만 점프해야 한다.
+        # lca가 되지 않는 모든 점프를 시도한다.
+        # 점프 후 그 노드의 부모노드가 lca가 된다.
+        */
         for (int j=LOG-1; j>=0; j--) {
             if (parent[u][j] != parent[v][j]) {
                 u = parent[u][j];
@@ -93,6 +112,7 @@ public class BOJ_13511_트리와쿼리2 {
         return dist[u] + dist[v] - 2L*dist[LCA];
     }
 
+    // k번째 노드가 lca - u 사이에 있는지 lca - v 사이에 있는지 판단해서 구한다.
     static int findNode(int u, int v, int k) {
         int LCA = lca(u, v);
         int len1 = depth[u] - depth[LCA] + 1;
@@ -124,7 +144,7 @@ public class BOJ_13511_트리와쿼리2 {
         depth = new int[N+1];
         dist = new long[N+1];
 
-        final int ROOT = 1;
+        final int ROOT = 1; // 루트는 아무 노드나 잡아도 상관 없다.
         depth[ROOT] = 1;
         dist[ROOT] = 0;
 
