@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
+/*
+ * 메모리: 64,668 kb
+ * 실행시간: 452 ms
+ */
 public class BOJ_5719_거의최단경로 {
 	static int N, M, S, D;
 	
@@ -76,7 +79,8 @@ public class BOJ_5719_거의최단경로 {
 			for (Edge e : adj[cur.v]) {
 				int next = e.to;
 				int nextDist = cur.dist + e.w;
-				
+
+				// 최단거리의 경로를 전부 저장.
 				if (dist[next] > nextDist) {
 					dist[next] = nextDist;
 					parents[next].clear();
@@ -92,7 +96,8 @@ public class BOJ_5719_거의최단경로 {
 	static void removePath() {
 		q.clear();
 		q.offer(D);
-		
+
+		// 최단 경로 제거 
 		while(!q.isEmpty()) {
 			int cur = q.poll();
 			for (int prev : parents[cur]) {
@@ -146,10 +151,10 @@ public class BOJ_5719_거의최단경로 {
 		while(!(N==0 && M==0)) {
 			init(br);
 			
-			findBest();
-			removePath();
+			findBest(); // 최단 경로 구하기 + 최단 경로 저장
+			removePath(); // 최단 경로 역탐색하며 경로 제거
 			
-			output.append(findAnswer()).append("\n");
+			output.append(findAnswer()).append("\n"); // 재탐색
 			
 			st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
