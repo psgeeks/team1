@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -76,7 +75,6 @@ public class BOJ_15683_감시 {
 		int sum = 0;
 		int[][] newmap = new int[N][M];
 		for(int n = 0; n < N; n++) newmap[n] = map[n].clone(); //
-		//System.out.println(Arrays.deepToString(newmap));
 		for(int k = 0; k < K; k++) { 
 			int num = cctvList.get(k).num;
 			int r = cctvList.get(k).r;
@@ -101,7 +99,6 @@ public class BOJ_15683_감시 {
 				fill(r, c, 3, newmap);
 			}	
 		}
-		//System.out.println(Arrays.deepToString(newmap));
 		for(int r = 0; r < N; r++) {
 			for(int c = 0; c < M; c++) {
 				if(newmap[r][c] == 0) {
