@@ -33,7 +33,7 @@ public class Solution_바이러스파이프 {
 
         if (current == n || remaining == 0) return;
 
-        for (int type = 0; type <= 3; type++) {
+        for (int type = 1; type <= 3; type++) {
             boolean[] nextInfected = spread(infected, type);
 
             if (countInfected(nextInfected) > current) {
