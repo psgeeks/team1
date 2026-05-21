@@ -1,23 +1,29 @@
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
         int n = nums.length;
-        int[] sums = new int[n+1];
 
-        for(int i = 1; i <= n; i++) {
-            sums[i] = sums[i-1] + nums[i-1];
-        }
-
+        int left = 0, right = 0;
         int min = n+1;
-        for (int i = 0; i <= n; i++) {
-            int toFind = sums[i] + target;
+        int sum = 0;
+        while (true) {
 
-            int idx = Arrays.binarySearch(sums, toFind);
+            while (right < n && sum < target) {
+                sum += nums[right];
+                right++;
+            }
 
-            if (idx < 0) idx = -idx - 1;
+            if (sum < target) break;
 
-            if (idx <= n) min = Math.min(min, idx - i);
+            while (left <= right && sum >= target) {
+                min = Math.min(min, right - left);
+                sum -= nums[left];
+                left++;
+            }
+            
+            if (right == n && sum < target) break;
         }
 
-        return min == n+1 ? 0 : min;
+        if (min == n+1) return 0;
+        return min;
     }
 }
