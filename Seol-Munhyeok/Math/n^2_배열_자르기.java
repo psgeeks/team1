@@ -17,7 +17,6 @@ class Solution {
         // 유효한 범위 내에서 추출
         int size = (int)(right - left + 1);
         int[] answer = new int[size];
-        int rowCount = endRow - startRow + 1;
         int startIdx = (int)(left % n);
         for (int i = 0; i < size; i++) {
             answer[i] = ansList.get(startIdx + i);
